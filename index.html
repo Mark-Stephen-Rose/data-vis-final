@@ -5,6 +5,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vega@6.2.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@6.4.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@7.0.2"></script>
+    <link rel="stylesheet" href="index.css">
   </head>
   <body>
     <div id="popularity_correlation_chart"></div>
@@ -14,7 +15,7 @@
         var popularity_correlation_chart = {
             $schema: 'https://vega.github.io/schema/vega-lite/v6.json',
             description: 'Bar graph visualizing what metrics best correlate with popularity -- by genre',
-            title: 'What best correlates with popularity?',
+            title: 'What Best Correlates With Popularity?',
             data: {url:'popularity_correlation.csv'},
             params: [ {
                     name: 'genreParam',
@@ -144,11 +145,11 @@
                 x: {
                     field: 'Correlation', 
                     type: 'quantitative', 
-                    sort:'-x', 
                     axis: {title: 'Correlation Coefficient'},
                     scale: {domain: [-1.0,1.0]}
                 },
-                y: {field: 'Metric', type: 'nominal'},
+                y: {field: 'Metric', type: 'nominal', sort: {field: 'Correlation', order: 'descending'}},
+                color: {value: "DarkBlue"},
                 tooltip: [ {field: 'Metric'},
                 {field: 'Correlation'},
                 {field: 'Genre'} ]
