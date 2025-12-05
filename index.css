@@ -21,16 +21,15 @@ header {
 
 .header-container {
   display: flex;
-  justify-content: space-between;
-  max-width: 1200px;
+  max-width: 90vw;
   align-items: center;
+  margin-left: 10vw;
 }
 
 .header-left {
   display: flex;
   align-items: center;
-  gap: 15px;
-  flex-shrink: 1;
+  gap: 1vw;
 }
 
 .title-heading {
@@ -38,7 +37,6 @@ header {
   font-size: 2.2rem;
   font-weight: 700;
   text-align: left;
-  padding-left: 10 vw;
 }
 
 .spotify-logo {
@@ -50,6 +48,7 @@ header {
   background-color: #3a3a3a;
   color: #B3B3B3;
   padding: 10px 30px;
+  margin-left: 2vw;
   border: none;
   cursor: pointer;
   font-size: medium;
@@ -100,7 +99,8 @@ header {
 
 #explicit_chart {
   display: block;
-  margin-left: 50px;
+  width: 28vw;
+  margin-left: 20vw;
 }
 
 #tempo_length_plot {

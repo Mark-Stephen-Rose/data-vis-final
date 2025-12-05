@@ -683,7 +683,7 @@ Papa.parse("radar_chart_songs.csv", {
     }],
     facet: { column: { field: 'explicit', title: 'Using a random sample of 1000 songs each' } },
     spec: {
-    width: 500,
+    width: "container",
       transform: [{ calculate: 'datum[metricParam]', as: 'metricValue' },
       { bin: { maxbins: 20 }, field: "metricValue", as: ["bin_start", "bin_end"] }],
       mark: { type: 'bar', stroke: "black", strokeWidth: '1px' },
