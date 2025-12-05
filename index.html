@@ -24,15 +24,18 @@
 <body>
   <header>
     <h1 class="vis-heading">Unwrapping the Data: All About Music On <img
-      src="https://1000logos.net/wp-content/uploads/2017/11/Spotify-Logo.png" alt="Spotify"
-      style="width: 10%; height: auto; vertical-align: middle;"> </h1>
-      <a href="#vis"> Click here if you want to see a correlation heatmap </a>
+        src="https://1000logos.net/wp-content/uploads/2017/11/Spotify-Logo.png" alt="Spotify"
+        style="width: 10%; height: auto; vertical-align: middle;"> </h1>
+    <a href="#vis"> Click here if you want to see a correlation heatmap </a>
   </header>
-  
-  <div class="section">
-    <h2 class="vis-heading">What Best Correlates With Popularity?</h2>
-    <div id="popularity_correlation_chart"></div>
 
+  <div class="section">
+
+    <h2 class="vis-heading">What Best Correlates With Popularity?</h2>
+    <div class="same_line">
+      <div id="popularity_correlation_chart"></div>
+      <p id="popularity_chart_explanation"> </p>
+    </div>
   </div>
 
   <div class="section">
@@ -87,7 +90,10 @@
         <div id="scatter"></div>
       </div>
     </div>
+    <button type="button" id="testButton">Click Me!</button>
   </div>
+
+
 
   <script type="text/javascript">
   </script>

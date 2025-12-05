@@ -199,7 +199,7 @@
       color: {
         field: "Correlation",
         type: "quantitative",
-        scale: { domain: [-1, 0, 1], range: ["#b2182b", "#f7f7f7", "#2166ac"] },
+        scale: { domain: [-1, 0, 1], range: ["#121212", "#f7f7f7", "#1db954"] },
       },
       tooltip: [
         { field: 'Metric' },
@@ -210,6 +210,9 @@
   };
 
   vegaEmbed('#popularity_correlation_chart', popularity_correlation_chart);
+  
+
+  
   /************************************** Second Visualization: Radar Chart By Song/Artist ******************************************/
 
   const dropdownValuesTracks = ["Unholy (feat. Kim Petras)",
@@ -771,7 +774,7 @@
           type: 'nominal',
           scale: {
             domain: ['Explicit', 'Non-Explicit'],
-            range: ['#b2182b', '#2166ac']
+            range: ['#1db954', '#535353']
           }
         },
         tooltip: [
@@ -811,7 +814,7 @@
       color: {
         field: 'loudness',
         type: 'quantitative',
-        scale: { domain: [-20, -10, 0], range: ["#b2182b", "#f7f7f7", "#2166ac"] },
+        scale: { domain: [-20, -10, 0], range: ["#121212", "#babfbc", "#1db954"] },
         legend: { title: 'Avg. Loudness (dB)' }
       },
       
@@ -864,7 +867,7 @@
       color: {
         field: "correlation",
         type: "quantitative",
-        scale: { domain: [-1, 0, 1], range: ["#b2182b", "#f7f7f7", "#2166ac"] },
+        scale: { domain: [-1, 0, 1], range: ["#121212", "#f7f7f7", "#1db954"] },
         legend: { title: "Correlation", gradientLength: 320 }
       },
       stroke: {
@@ -998,4 +1001,20 @@
   heatView.addEventListener("dblclick", () => {
     buildScatter(null, null, DEFAULT_SAMPLE_SIZE);
   });
+
+  const testButton = document.getElementById('testButton');
+  console.log(testButton)
+
+  let buttonValue = false
+  testButton.addEventListener('click', function() {
+    buttonValue = !buttonValue
+    console.log('buttonValue is '+buttonValue);
+    if (buttonValue == true) {
+      document.getElementById('popularity_chart_explanation').innerText = "Want to know more about what impacts a song's popularity? Click through each genre and see what metrics matter most!";
+    }
+    else {
+      document.getElementById('popularity_chart_explanation').innerText = "";
+    }
+  });
+
 })();
