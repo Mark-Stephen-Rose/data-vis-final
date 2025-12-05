@@ -38,6 +38,7 @@ header {
   font-size: 2.2rem;
   font-weight: 700;
   text-align: left;
+  padding-left: 10 vw;
 }
 
 .spotify-logo {
@@ -46,7 +47,7 @@ header {
 }
 
 .dropdown-btn {
-  background-color: #1E1E1E;
+  background-color: #3a3a3a;
   color: #B3B3B3;
   padding: 10px 30px;
   border: none;
@@ -57,7 +58,7 @@ header {
 }
 
 .dropdown-btn:hover {
-  background-color: #2a2a2a;
+  background-color: #515050;
 }
 
 .dropdown {
@@ -105,8 +106,9 @@ header {
 #tempo_length_plot {
   display: block;
   width: 70%;
-  height: 1000%;
+  height: 60vh;
   margin: 0 auto;
+  padding-bottom: 0;
 }
 
 .vis-heading {
@@ -127,7 +129,7 @@ header {
 }
 
 #song_radar_chart {
-  padding-left: 20%
+  padding-left: 20%;
 }
 
 .autocomplete {
@@ -175,3 +177,34 @@ header {
   flex-direction: row;
   gap: 0;
 }
+
+#artist_message {
+  max-width: 30vw;
+  text-align: center;
+  margin-left: 35vw;
+}
+
+#song_message {
+  max-width: 30vw;
+  text-align: center;
+  margin-left: 5vw;
+}
+
+#explicit_message {
+  text-align: center;
+  width: 100%;
+}
+
+#tempo_message {
+  text-align: center;
+  margin-top: 3vh;
+  width: 100%;
+}
+
+#heatmap_message {
+  text-align: center;
+  margin-top: 5vh;
+  margin-bottom: 10vh;
+  width: 100%;
+}
+
