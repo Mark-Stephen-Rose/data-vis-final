@@ -39,12 +39,12 @@
     <div class="dropdown">
       <button class="dropdown-btn">What do you want to know? ▾</button>
       <div class="dropdown-content">
-        <a href="#popularity_correlation_chart1">What attribute most impacts popularity?</a>
-        <a href="#song_radar_chart1">More about your favorite songs</a>
-        <a href="#artists_radar_chart1">More about your favorite artists</a>
-        <a href="#explicit_chart1">Explicit vs. Non-Explicit</a>
-        <a href="#tempo_length_plot1">Tempo vs Length</a>
-        <a href="#vis1">Correlation Heatmap</a>
+        <a href="#popularity_correlation_chart1" onclick="chartMessage('popularity');">What attribute most impacts popularity?</a>
+        <a href="#song_radar_chart1" onclick="chartMessage('song');">More about your favorite songs</a>
+        <a href="#artists_radar_chart1" onclick="chartMessage('artist');">More about your favorite artists</a>
+        <a href="#explicit_chart1" onclick="chartMessage('explicit');">How explicit and non-explicit songs compare</a>
+        <a href="#tempo_length_plot1" onclick="chartMessage('tempo');">How fast, long, and loud popular artists make their songs</a>
+        <a href="#vis1" onclick="chartMessage('heatmap');">What attributes relate most to one another</a>
       </div>
     </div>
 
@@ -55,7 +55,10 @@
   <div class="section">
     <div id="popularity_correlation_chart1"></div>
     <h2 class="vis-heading">What Best Correlates With Popularity?</h2>
+    <div class="same_line">
     <div id="popularity_correlation_chart"></div>
+    <p id="popularity_chart_explanation"></p>
+    </div>
   </div>
 
   <div class="section">
@@ -74,9 +77,14 @@
         <h2 class="vis-heading">Artist's Discography Average Attributes</h2>
         <div id="artists_radar_chart"></div>
         <div class="autocomplete" style="width:300px; margin-bottom: 10px;">
+
           Enter Artist Name: <input id="dropdownInputArtist" type="text" name="artistInput">
         </div>
       </div>
+    </div>
+    <div class="radars">
+      <p id="song_message"></p>
+      <p id="artist_message"></p>
     </div>
   </div>
 
@@ -84,6 +92,7 @@
     <div id="explicit_chart1"></div>
     <h2 class="vis-heading">How do Explicit and Non-Explicit Songs Compare?</h2>
     <div id="explicit_chart"></div>
+    <p id="explicit_message"></p>
   </div>
 
   <div class="section">
@@ -91,6 +100,7 @@
     <h2 class="vis-heading">Average Song Tempo vs. Length by Artist</h2>
     <p class="vis-heading">Pan and Zoom to Discover More</p>
     <div id="tempo_length_plot"></div>
+    <p id="tempo_message"></p>
   </div>
 
   <div class="section">
@@ -115,6 +125,9 @@
         <div id="scatter"></div>
       </div>
     </div>
+
+    <p id="heatmap_message"></p>
+    
   </div>
   <script src="Dashboard.js"></script>
 </body>

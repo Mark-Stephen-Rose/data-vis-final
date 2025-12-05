@@ -1,4 +1,15 @@
 (async function () {
+  /****************************** Starting Dropdown Menu ******************************************/
+  document.querySelector('.dropdown-btn').addEventListener('click', () => {
+    const menu = document.querySelector('.dropdown-content');
+    menu.style.display = (menu.style.display === "block") ? "none" : "block";
+  });
+
+  document.querySelectorAll('.dropdown-content a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.querySelector('.dropdown-content').style.display = "none";
+    });
+  });
   /****************************** Javascript Data Munging ******************************************/
   const DEFAULT_SAMPLE_SIZE = 100;
   const prettyLabel = s => s.charAt(0).toUpperCase() + s.slice(1);
@@ -199,7 +210,7 @@
       color: {
         field: "Correlation",
         type: "quantitative",
-        scale: { domain: [-1, 0, 1], range: ["#b2182b", "#f7f7f7", "#2166ac"] },
+        scale: { domain: [-1, 0, 1], range: ["#121212", "#f7f7f7", "#1db954"] },
       },
       tooltip: [
         { field: 'Metric' },
@@ -210,6 +221,9 @@
   };
 
   vegaEmbed('#popularity_correlation_chart', popularity_correlation_chart);
+  
+
+  
   /************************************** Second Visualization: Radar Chart By Song/Artist ******************************************/
   
  let dropdownValuesTracks = []; // global array
@@ -681,7 +695,7 @@ Papa.parse("radar_chart_songs.csv", {
           type: 'nominal',
           scale: {
             domain: ['Explicit', 'Non-Explicit'],
-            range: ['#b2182b', '#2166ac']
+            range: ['#1db954', '#535353']
           }
         },
         tooltip: [
@@ -699,6 +713,7 @@ Papa.parse("radar_chart_songs.csv", {
     $schema: 'https://vega.github.io/schema/vega-lite/v6.json',
     description: 'Scatterplot showing the relationship between average tempo, length, and loudness per artist',
     width: 'container',
+    height: 'container',
     title: '',
     data: { url: 'artist_stats.csv' },
     params: [{
@@ -706,7 +721,7 @@ Papa.parse("radar_chart_songs.csv", {
       select: 'interval',
       bind: 'scales'
     }],
-    mark: { type: 'circle' },
+    mark: { type: 'circle', size: 125},
     encoding: {
       x: {
         field: 'duration',
@@ -721,7 +736,7 @@ Papa.parse("radar_chart_songs.csv", {
       color: {
         field: 'loudness',
         type: 'quantitative',
-        scale: { domain: [-20, -10, 0], range: ["#b2182b", "#f7f7f7", "#2166ac"] },
+        scale: { domain: [-20, -10, 0], range: ["#121212", "#babfbc", "#1db954"] },
         legend: { title: 'Avg. Loudness (dB)' }
       },
       
@@ -774,7 +789,7 @@ Papa.parse("radar_chart_songs.csv", {
       color: {
         field: "correlation",
         type: "quantitative",
-        scale: { domain: [-1, 0, 1], range: ["#b2182b", "#f7f7f7", "#2166ac"] },
+        scale: { domain: [-1, 0, 1], range: ["#121212", "#f7f7f7", "#1db954"] },
         legend: { title: "Correlation", gradientLength: 320 }
       },
       stroke: {
@@ -855,7 +870,7 @@ Papa.parse("radar_chart_songs.csv", {
       }],
       autosize: { type: "fit", contains: "padding" },
       data: { values: sample },
-      mark: { type: "point", tooltip: true, opacity: 0.85 },
+      mark: { type: "circle", tooltip: true, opacity: 0.85 },
       encoding: {
         x: {
           field: xField,
@@ -908,4 +923,116 @@ Papa.parse("radar_chart_songs.csv", {
   heatView.addEventListener("dblclick", () => {
     buildScatter(null, null, DEFAULT_SAMPLE_SIZE);
   });
+
+  const testButton = document.getElementById('testButton');
+  console.log(testButton)
+ 
+
 })();
+
+
+let popularityMessage = false;
+let artistMessage = false;
+let songMessage = false;
+let explicitMessage = false;
+let tempoMessage = false;
+let heatmapMessage = false;
+
+  function chartMessage(message) {
+    switch (message) {
+      case 'popularity':
+        popularityMessage = true;
+        artistMessage = false;
+        songMessage = false;
+        explicitMessage = false;
+        tempoMessage = false;
+        heatmapMessage = false;
+        break;
+      case 'artist':
+        popularityMessage = false;
+        artistMessage = true;
+        songMessage = false;
+        explicitMessage = false;
+        tempoMessage = false;
+        heatmapMessage = false;
+        break;
+      case 'song':
+        popularityMessage = false;
+        artistMessage = false;
+        songMessage = true;
+        explicitMessage = false;
+        tempoMessage = false;
+        heatmapMessage = false;
+        break;
+      case 'explicit':
+        popularityMessage = false;
+        artistMessage = false;
+        songMessage = false;
+        explicitMessage = true;
+        tempoMessage = false;
+        heatmapMessage = false;
+        break;
+      case 'tempo':
+        popularityMessage = false;
+        artistMessage = false;
+        songMessage = false;
+        explicitMessage = false;
+        tempoMessage = true;
+        heatmapMessage = false;
+        break;
+      case 'heatmap':
+        popularityMessage = false;
+        artistMessage = false;
+        songMessage = false;
+        explicitMessage = false;
+        tempoMessage = false;
+        heatmapMessage = true;
+        break;
+    }
+    console.log(tempoMessage);
+    
+    if (popularityMessage == true) {
+      document.getElementById('popularity_chart_explanation').innerText = "Want to know more about what impacts a song's popularity? Click through each genre and see what metrics matter most!";
+    }
+    else {
+      document.getElementById('popularity_chart_explanation').innerText = "";
+    }
+
+    if (songMessage == true) {
+      document.getElementById('song_message').innerText = "Want to know more about some of your favorite songs? Try typing the song name into the chart to left and see what attributes it leans towards";
+    }
+    else {
+      document.getElementById('song_message').innerText = "";
+    }
+
+    if (artistMessage == true) {
+      document.getElementById('artist_message').innerText = "Want to know more about the music of your favorite artist? Simply type their name into the artist chart here and see what attributes their music leans towards";
+    }
+    else {
+      document.getElementById('artist_message').innerText = "";
+    }
+
+    if (explicitMessage == true) {
+      document.getElementById('explicit_message').innerText = "Want to know more about how explicit and non-explicit songs compare? Browse through the different metrics to see how swears typically impact other aspects of a song";
+    }
+    else {
+      document.getElementById('explicit_message').innerText = "";
+    }
+
+    if (tempoMessage == true) {
+      document.getElementById('tempo_message').innerText = "Want to know how fast, long, and loud popular artists make their songs? Pan, zoom, and hover over specific points to investigate.";
+      console.log('operation successfully executed')
+    }
+    else {
+      document.getElementById('tempo_message').innerText = "";
+    }
+
+    if (heatmapMessage == true) {
+      document.getElementById('heatmap_message').innerText = "Want to find out what attributes of a song most relate to one another? Click on a square to see the extent to which any two attributes correlate with each other";
+      console.log('operation successfully executed')
+    }
+    else {
+      document.getElementById('heatmap_message').innerText = "";
+    }
+
+}
