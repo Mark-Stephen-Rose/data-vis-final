@@ -441,7 +441,7 @@ Papa.parse("radar_chart_songs.csv", {
     if (e.key === 'Enter' || e.keyCode === 13) updateChartTrack();
   });
 
-  let dropdownValuesArtist = []; // global array
+  let dropdownValuesArtist = [];
 
   Papa.parse("radar_chart_artist_avg.csv", {
     download: true,
@@ -988,51 +988,59 @@ let heatmapMessage = false;
         tempoMessage = false;
         heatmapMessage = true;
         break;
+      case 'browse':
+        popularityMessage = false;
+        artistMessage = false;
+        songMessage = false;
+        explicitMessage = false;
+        tempoMessage = false;
+        heatmapMessage = false;
+        break;
     }
     console.log(tempoMessage);
     
     if (popularityMessage == true) {
-      document.getElementById('popularity_chart_explanation').innerText = "Want to know more about what impacts a song's popularity? Click through each genre and see what metrics matter most!";
+      document.getElementById('popularity_chart_explanation').innerHTML = "This chart shows how each metric correlates with popularity depending on the genre. <b> Try clicking through the genres to see what attributes matter most! </b>";
     }
     else {
       document.getElementById('popularity_chart_explanation').innerText = "";
     }
 
     if (songMessage == true) {
-      document.getElementById('song_message').innerText = "Want to know more about some of your favorite songs? Try typing the song name into the chart to left and see what attributes it leans towards";
+      document.getElementById('song_message').innerHTML = "This chart shows what attributes a song leans most heavily towards. <b> Try typing song names into the field above to see more about your favorite songs  </b> ";
     }
     else {
-      document.getElementById('song_message').innerText = "";
+      document.getElementById('song_message').innerHTML = "";
     }
 
     if (artistMessage == true) {
-      document.getElementById('artist_message').innerText = "Want to know more about the music of your favorite artist? Simply type their name into the artist chart here and see what attributes their music leans towards";
+      document.getElementById('artist_message').innerHTML = "This chart shows what an artist's discography leans most heavily towards on average. <b> Simply type an artist's name into the field above to learn more! </b>";
     }
     else {
-      document.getElementById('artist_message').innerText = "";
+      document.getElementById('artist_message').innerHTML = "";
     }
 
     if (explicitMessage == true) {
-      document.getElementById('explicit_message').innerText = "Want to know more about how explicit and non-explicit songs compare? Browse through the different metrics to see how swears typically impact other aspects of a song";
+      document.getElementById('explicit_message').innerHTML = "This chart compares the distributions of songs with profanity vs. songs without profanity, depending on the selected metric. <b> Browse through the different metrics to see how profanity typically impacts other aspects of a song </b> ";
     }
     else {
-      document.getElementById('explicit_message').innerText = "";
+      document.getElementById('explicit_message').innerHTML = "";
     }
 
     if (tempoMessage == true) {
-      document.getElementById('tempo_message').innerText = "Want to know how fast, long, and loud popular artists make their songs? Pan, zoom, and hover over specific points to investigate.";
+      document.getElementById('tempo_message').innerHTML = "This plot shows the average tempo, song length, and loudness of some popular artists' discographies. <b> Pan, zoom, and hover over specific points to investigate. </b>";
       console.log('operation successfully executed')
     }
     else {
-      document.getElementById('tempo_message').innerText = "";
+      document.getElementById('tempo_message').innerHTML = "";
     }
 
     if (heatmapMessage == true) {
-      document.getElementById('heatmap_message').innerText = "Want to find out what attributes of a song most relate to one another? Click on a square to see the extent to which any two attributes correlate with each other";
+      document.getElementById('heatmap_message').innerHTML = "This heatmap shows how much any two song metrics correlate with one another. <b> Click on a square to learn more specifics </b> ";
       console.log('operation successfully executed')
     }
     else {
-      document.getElementById('heatmap_message').innerText = "";
+      document.getElementById('heatmap_message').innerHTML = "";
     }
 
 }

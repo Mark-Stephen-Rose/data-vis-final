@@ -94,6 +94,7 @@ header {
   height: 40vh;
   margin: 0 auto;
   flex-shrink: 0;
+  padding-right: 0;
 
 }
 
@@ -191,8 +192,11 @@ header {
 }
 
 #explicit_message {
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 5vh;
   text-align: center;
-  width: 100%;
 }
 
 #tempo_message {
